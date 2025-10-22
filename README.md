@@ -32,9 +32,9 @@ Crear GameObject Cinemachine, 2D Camera
 
 ## 3. Configuración de la cámara virtual
 
-Crear otro GameObject Cinemachine, configuramos las dos cámaras, **Cinemachine 1** solo cambia el tamaño de la cámara.
+Crear otro GameObject Cinemachine, configuramos las dos cámaras, **Cinemachine 1** solo cambia el tamaño de la cámara, y que la cámara sea más lento de perseguir al jugador.
 
-y la otra cámara **Cinemachine 2**, añade efecto de zona muerte (dead zone, soft zone, hard zone)
+y la otra cámara **Cinemachine 2**, más grande, y la velocidad normal.
 
 **Cinemachine 1**
 
@@ -42,16 +42,16 @@ y la otra cámara **Cinemachine 2**, añade efecto de zona muerte (dead zone, so
 
 Resultado: 
 
-La cámara mueve cuando el personaje está moviendo
+La cámara mueve cuando el personaje está moviendo, pero el personaje se sale de la cámara.
 
-![alt text](Unity_QvVYTFj3ih.gif)
+![alt text](Unity_hGQSMg45L1.gif)
 
 **Cinemachine 2**
 
-![alt text](image-3.png)
-
 Resultado: 
 
-En la zona suave, el jugador puede mover sin que la cámara mueve consigo. Pero cuando salga de la zona suave y entra a la zona muerte, entonces la cámara mueve y ajusta para el jugador.
+La cámara sigue inmediatamente cuando el jugador se mueve. El jugador no sale de la cámara.
 
-![alt text](Unity_g72h1H9bEA.gif)
+![alt text](Unity_Jjs47XpWen.gif)
+
+
