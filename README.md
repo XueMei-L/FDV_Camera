@@ -55,7 +55,7 @@ La cámara sigue inmediatamente cuando el jugador se mueve. El jugador no sale d
 ![alt text](Unity_Jjs47XpWen.gif)
 
 
-## Zona de confinamiento:
+## 4. Zona de confinamiento:
 
 Para que la parte fuera de la mapa no está dentro de la cámara, podemos añadir la extención **Cinemachine Confiner** para evitar esto.
 
@@ -80,4 +80,27 @@ Pasa lo mismo que el cinemachine 1. Solo que cuando está dentro de la limitaci�
 
 ![alt text](Unity_OnQZU3IA5B.gif)
 
-## Seguimiento a un grupo de objetivos:
+## 5. Seguimiento a un grupo de objetivos:
+
+### 5.1 Agrega varios sprites en la escena que estén realizando un movimiento (mínimo 3). Genera una cámara adicional que le haga el seguimiento a dichos objetos.
+
+Crear un Target Group: **Cinemachine** → Create **Target Group Camera**.
+Agreagar más sprites, añadirlos a **TargetGroup1** -> **Targets**
+
+![alt text](image-4.png)
+
+Cree un script para que los sprites nuevos puede mover automaticamente.
+
+Resultado:
+Se puede ver que la cámara está manteniendo la posición donde mueven los sprites.
+
+![alt text](Unity_PHVAOnlQzR.gif)
+
+### 5.2 Agrega 2 sprites adicionales en la escena que estén realizando un movimiento Genera una cámara adicional que le haga el seguimiento a dichos objetos, cada uno con un peso en la importancia del seguimiento diferente.
+
+Agregamos otros dos Sprites, añadirlos a **TargetGroupCamera**, cambiamos el peso Weigh de cada uno Sprite.
+
+Resultado:
+Se puede ver que la cámara se centra más para el sprite que tiene el peso mayor.
+
+![alt text](Unity_INpDpL6P2E.gif)
