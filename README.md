@@ -55,3 +55,29 @@ La cámara sigue inmediatamente cuando el jugador se mueve. El jugador no sale d
 ![alt text](Unity_Jjs47XpWen.gif)
 
 
+## Zona de confinamiento:
+
+Para que la parte fuera de la mapa no está dentro de la cámara, podemos añadir la extención **Cinemachine Confiner** para evitar esto.
+
+Creamos un GameObject vacío y le agregamos la extensión Cinemachine Confiner. Ahora ya tiene una limitación de cámara. Cuando la cámara llega al borde del objeto vacío no puede seguir a jugador.
+
+![alt text](image-3.png)
+
+Agregamos a **Cinemachine 1** un **chinemachine Confiner 2D** 
+
+Resultado:
+
+Se puede ver que el personaje sale de la cámara y la cámara se para en el limite de GameObject vació.
+
+![alt text](Unity_jUQDXvyhK4.gif)
+
+
+Hacemos con el **Cinemachine 2** también.
+
+Resultado: 
+
+Pasa lo mismo que el cinemachine 1. Solo que cuando está dentro de la limitación siempre está siguiendo al personaje.
+
+![alt text](Unity_OnQZU3IA5B.gif)
+
+## Seguimiento a un grupo de objetivos:
