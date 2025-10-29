@@ -1,14 +1,14 @@
 FDV_Camera
 
 ```
->> PRACTICA:   Unity Project Camera
+>> PRACTICA:   imgs/Unity Project Camera
 >> COMPONENTE: XueMei Lin
 >> GITHUB:     https://github.com/XueMei-L/FDV_Camara.git
 >> Versión:    1.0.0
 ```
 
 # Objetivo
-En esta práctica vamos a aprender cómo usar Camera en un proyecto de Unity.
+En esta práctica vamos a aprender cómo usar Camera en un proyecto de imgs/Unity.
 Las mécanicas importantes para la cámara en un juego:
 
 * Enfoque en el área de juego: Las cámaras se utilizan para definir el área visible del juego en la pantalla.
@@ -20,7 +20,7 @@ mostrar más detalles o panorámica para resaltar ciertas áreas del juego.
 
 Usarémos Cinemachine para controlar cámara 2D Y 3D.
 
-## 1. Crear un proyecto 2D en unity
+## 1. Crear un proyecto 2D en imgs/unity
 ## 2. Agregar una cámara con Cinemachine
 Hay que instar el paquete de Cinemachine desde PackManager
 
@@ -28,7 +28,7 @@ Hay que instar el paquete de Cinemachine desde PackManager
 
 Crear GameObject Cinemachine, 2D Camera
 
-![alt text](image-1.png)
+![alt text](imgs/image-1.png)
 
 ## 3. Configuración de la cámara virtual
 
@@ -38,13 +38,13 @@ y la otra cámara **Cinemachine 2**, más grande, y la velocidad normal.
 
 **Cinemachine 1**
 
-![alt text](image-2.png)
+![alt text](imgs/image-2.png)
 
 Resultado: 
 
 La cámara mueve cuando el personaje está moviendo, pero el personaje se sale de la cámara.
 
-![alt text](Unity_hGQSMg45L1.gif)
+![alt text](imgs/Unity_hGQSMg45L1.gif)
 
 **Cinemachine 2**
 
@@ -52,7 +52,7 @@ Resultado:
 
 La cámara sigue inmediatamente cuando el jugador se mueve. El jugador no sale de la cámara.
 
-![alt text](Unity_Jjs47XpWen.gif)
+![alt text](imgs/Unity_Jjs47XpWen.gif)
 
 
 ## 4. Zona de confinamiento:
@@ -61,7 +61,7 @@ Para que la parte fuera de la mapa no está dentro de la cámara, podemos añadi
 
 Creamos un GameObject vacío y le agregamos la extensión Cinemachine Confiner. Ahora ya tiene una limitación de cámara. Cuando la cámara llega al borde del objeto vacío no puede seguir a jugador.
 
-![alt text](image-3.png)
+![alt text](imgs/image-3.png)
 
 Agregamos a **Cinemachine 1** un **chinemachine Confiner 2D** 
 
@@ -69,7 +69,7 @@ Resultado:
 
 Se puede ver que el personaje sale de la cámara y la cámara se para en el limite de GameObject vació.
 
-![alt text](Unity_jUQDXvyhK4.gif)
+![alt text](imgs/Unity_jUQDXvyhK4.gif)
 
 
 Hacemos con el **Cinemachine 2** también.
@@ -78,7 +78,7 @@ Resultado:
 
 Pasa lo mismo que el cinemachine 1. Solo que cuando está dentro de la limitación siempre está siguiendo al personaje.
 
-![alt text](Unity_OnQZU3IA5B.gif)
+![alt text](imgs/Unity_OnQZU3IA5B.gif)
 
 ## 5. Seguimiento a un grupo de objetivos:
 
@@ -87,14 +87,14 @@ Pasa lo mismo que el cinemachine 1. Solo que cuando está dentro de la limitaci�
 Crear un Target Group: **Cinemachine** → Create **Target Group Camera**.
 Agreagar más sprites, añadirlos a **TargetGroup1** -> **Targets**
 
-![alt text](image-4.png)
+![alt text](imgs/image-4.png)
 
 Cree un script para que los sprites nuevos puede mover automaticamente.
 
 Resultado:
 Se puede ver que la cámara está manteniendo la posición donde mueven los sprites.
 
-![alt text](Unity_PHVAOnlQzR.gif)
+![alt text](imgs/Unity_PHVAOnlQzR.gif)
 
 ### 5.2 Agrega 2 sprites adicionales en la escena que estén realizando un movimiento Genera una cámara adicional que le haga el seguimiento a dichos objetos, cada uno con un peso en la importancia del seguimiento diferente.
 
@@ -103,7 +103,7 @@ Agregamos otros dos Sprites, añadirlos a **TargetGroupCamera**, cambiamos el pe
 Resultado:
 Se puede ver que la cámara se centra más para el sprite que tiene el peso mayor.
 
-![alt text](Unity_INpDpL6P2E.gif)
+![alt text](imgs/Unity_INpDpL6P2E.gif)
 
 ## Impulso:
 
@@ -112,8 +112,8 @@ Se puede ver que la cámara se centra más para el sprite que tiene el peso mayo
 Añadir un componente Cinemachine Impulse Source, y crear un script llamado **ExplosionImpulse.cs** con los siguientes códigos.
 
 ```
-using UnityEngine;
-using Unity.Cinemachine;
+using imgs/UnityEngine;
+using imgs/Unity.Cinemachine;
 
 public class ExplosionImpulse : MonoBehaviour
 {
@@ -135,17 +135,17 @@ public class ExplosionImpulse : MonoBehaviour
 }
 ```
 
-![alt text](image-5.png)
+![alt text](imgs/image-5.png)
 
 y añadir a la cámara cinemachine, el componente cinemachine impulse listener
 
-![alt text](image-6.png)
+![alt text](imgs/image-6.png)
 
 Resultado:
 
 Cuando pulso el teclado space, el componente realiza la acción y la cámara también.
 
-![alt text](Unity_ucVagtsZKC.gif)
+![alt text](imgs/Unity_ucVagtsZKC.gif)
 
 ### Cinemachine Collisión Impulse Source: el impulso se genera por una colisión.
 Configuramos el circulo, cuando el jugador choca con el circulo, produce cinemachine con efectos:
@@ -155,13 +155,13 @@ Añadir a BigCircle:
   * **BoxCollider 2D**
   * **Cinemachine Collision Impulse Source**
 dentro del **Cinemachine Collision Impulse Source**, configuramos tipo de impulso y forma de impulso.
-![alt text](image-7.png)
+![alt text](imgs/image-7.png)
 
 y la cámara con el apartado antrior con **Cinemachine Impulse Listener**
 
 Resultado: 
 
-![alt text](Unity_YoYoDlx3g8.gif)
+![alt text](imgs/Unity_YoYoDlx3g8.gif)
 
 
 ## Zoom
@@ -174,8 +174,8 @@ crear un script y asignar a un **gameobject vacío**, usa **vcam.Lens.Orthograph
 
 En el script **CameraZoom.cs** he añadido una variable **speed** para que el zoom de la cámara sea más suave.
 ```
-using UnityEngine;
-using Unity.Cinemachine;
+using imgs/UnityEngine;
+using imgs/Unity.Cinemachine;
 
 public class SmoothCameraZoom : MonoBehaviour
 {
@@ -224,7 +224,7 @@ public class SmoothCameraZoom : MonoBehaviour
 
 Resultado:
 
-![alt text](Unity_46yPEWXhWG.gif)
+![alt text](imgs/Unity_46yPEWXhWG.gif)
 
 ## Intercambiar las cámaras:
 
@@ -233,7 +233,7 @@ Crear un script para controlar el cambio entre dos cámaras con el teclado c.
 y asignar el scirpt a un **Empty GameObject **
 
 ```
-using UnityEngine;
+using imgs/UnityEngine;
 
 public class CameraSwitcher : MonoBehaviour
 {
@@ -275,20 +275,20 @@ public class CameraSwitcher : MonoBehaviour
     }
 }
 ```
-![alt text](image-8.png)
+![alt text](imgs/image-8.png)
 
 Resultado: 
 
-![alt text](Unity_2IUvs5pcY0.gif)
+![alt text](imgs/Unity_2IUvs5pcY0.gif)
 
 ### Tarea: Implementar una UI que incluya algún elemento para seleccionar que cámara se activa.
 Crear un UI Button para controlar el cambio de dos cámaras.
 Asignar al button la función en el apartado anterior.
 
-![alt text](image-9.png)
+![alt text](imgs/image-9.png)
 
 Resultado: 
-![alt text](Unity_olU8K25Kyc.gif)
+![alt text](imgs/Unity_olU8K25Kyc.gif)
 
 ## Cámara rápida:
 ### Tarea: Crear un script para activar la cámara lenta cuando el personaje entre en colisión con un elemento de la escena que elijas para activar esta propiedad.
@@ -300,8 +300,8 @@ También creamos dos objetos que controla dichas cámaras, cuando el jugador pas
 
 Asignar a ambos objetos el siguiente script que controla la velocidad de las cámaras
 ```
-using UnityEngine;
-using Unity.Cinemachine;
+using imgs/UnityEngine;
+using imgs/Unity.Cinemachine;
 
 public class SimpleTimeZone : MonoBehaviour
 {
@@ -322,6 +322,17 @@ public class SimpleTimeZone : MonoBehaviour
 
 Resultado:
 
-![alt text](Unity_r64HIL7kWY.gif)
+![alt text](imgs/Unity_r64HIL7kWY.gif)
 
 ## Transición entre cámaras:
+
+Modificar la prioridad de dos cáramas, una tiene 10 y otra tiene 5.
+Crear dos rectangulos en el suelo como zona confinada y normal.
+En la zona confinada activa la opción **activate confinada** y la normal no.
+Crear un objeto vacío para limitar la "mapa del juego"
+En el cídigo, simplemente cambiamos las cámaras cuando pasa un rectangulo u otro.
+
+![alt text](imgs/image-10.png)
+
+Resultado: 
+![alt text](imgs/Unity_ioqAAnRywR.gif)
