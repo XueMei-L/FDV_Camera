@@ -104,3 +104,224 @@ Resultado:
 Se puede ver que la cámara se centra más para el sprite que tiene el peso mayor.
 
 ![alt text](Unity_INpDpL6P2E.gif)
+
+## Impulso:
+
+### Cinemachine Impulse Source: el impulso se genera en respuesta a un evento
+
+Añadir un componente Cinemachine Impulse Source, y crear un script llamado **ExplosionImpulse.cs** con los siguientes códigos.
+
+```
+using UnityEngine;
+using Unity.Cinemachine;
+
+public class ExplosionImpulse : MonoBehaviour
+{
+    private CinemachineImpulseSource impulseSource;
+    
+    void Start()
+    {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+    
+    }
+    
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            impulseSource.GenerateImpulse();
+        }
+    }
+}
+```
+
+![alt text](image-5.png)
+
+y añadir a la cámara cinemachine, el componente cinemachine impulse listener
+
+![alt text](image-6.png)
+
+Resultado:
+
+Cuando pulso el teclado space, el componente realiza la acción y la cámara también.
+
+![alt text](Unity_ucVagtsZKC.gif)
+
+### Cinemachine Collisión Impulse Source: el impulso se genera por una colisión.
+Configuramos el circulo, cuando el jugador choca con el circulo, produce cinemachine con efectos:
+
+Añadir a BigCircle:
+  * **Ridibody2D**
+  * **BoxCollider 2D**
+  * **Cinemachine Collision Impulse Source**
+dentro del **Cinemachine Collision Impulse Source**, configuramos tipo de impulso y forma de impulso.
+![alt text](image-7.png)
+
+y la cámara con el apartado antrior con **Cinemachine Impulse Listener**
+
+Resultado: 
+
+![alt text](Unity_YoYoDlx3g8.gif)
+
+
+## Zoom
+### Implementar un zoom a la cámara del jugador que se controle con las teclas w-s
+Para esta parte, crear un script para controlar la cámara: 
+W → la cámara se acerca (zoom ++).
+S → la cámara se aleja (zoom --).
+
+crear un script y asignar a un **gameobject vacío**, usa **vcam.Lens.OrthographicSize** para controlar el tamaño de la cámara usando w - s
+
+En el script **CameraZoom.cs** he añadido una variable **speed** para que el zoom de la cámara sea más suave.
+```
+using UnityEngine;
+using Unity.Cinemachine;
+
+public class SmoothCameraZoom : MonoBehaviour
+{
+    public CinemachineCamera vcam;   // Arrastra tu Cinemachine Camera aquí
+    public float zoomStep = 1f;      // Cuánto cambia por pulsación
+    public float zoomSpeed = 5f;     // Qué tan rápido se interpola
+    public float minZoom = 3f;
+    public float maxZoom = 20f;
+
+    private float targetZoom;        // Valor objetivo del zoom
+
+    void Start()
+    {
+        // Guardamos el tamaño inicial
+        targetZoom = vcam.Lens.OrthographicSize;
+    }
+
+    void Update()
+    {
+        if (vcam == null) return;
+
+        // Detectar entrada de teclado
+        if (Input.GetKey(KeyCode.W))
+        {
+            targetZoom -= zoomStep * Time.deltaTime * 5f; // Suave hacia adentro
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            targetZoom += zoomStep * Time.deltaTime * 5f; // Suave hacia afuera
+        }
+
+        // Limitar rango
+        targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
+
+        // Interpolación suave hacia el valor objetivo
+        float currentZoom = vcam.Lens.OrthographicSize;
+        float newZoom = Mathf.Lerp(currentZoom, targetZoom, Time.deltaTime * zoomSpeed);
+
+        // Aplicar en una sola línea
+        var lens = vcam.Lens;
+        lens.OrthographicSize = newZoom;
+        vcam.Lens = lens;
+    }
+}
+```
+
+Resultado:
+
+![alt text](Unity_46yPEWXhWG.gif)
+
+## Intercambiar las cámaras:
+
+### Tarea: Seleccionar un conjunto de teclas que permitan hacer el cambio entre dos cámaras. (Habilitar/Deshabilitar el gameobject de la cámara virtual)
+Crear un script para controlar el cambio entre dos cámaras con el teclado c.
+y asignar el scirpt a un **Empty GameObject **
+
+```
+using UnityEngine;
+
+public class CameraSwitcher : MonoBehaviour
+{
+    public GameObject camera1;
+    public GameObject camera2;
+
+    private GameObject activeCamera;
+
+    void Start()
+    {
+        camera1.SetActive(true);
+        camera2.SetActive(false);
+        activeCamera = camera1;
+    }
+
+    void Update()
+    {
+        // Cambiar cámara con la tecla C
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            SwitchCamera();
+        }
+    }
+
+    void SwitchCamera()
+    {
+        if (activeCamera == camera1)
+        {
+            camera1.SetActive(false);
+            camera2.SetActive(true);
+            activeCamera = camera2;
+        }
+        else
+        {
+            camera1.SetActive(true);
+            camera2.SetActive(false);
+            activeCamera = camera1;
+        }
+    }
+}
+```
+![alt text](image-8.png)
+
+Resultado: 
+
+![alt text](Unity_2IUvs5pcY0.gif)
+
+### Tarea: Implementar una UI que incluya algún elemento para seleccionar que cámara se activa.
+Crear un UI Button para controlar el cambio de dos cámaras.
+Asignar al button la función en el apartado anterior.
+
+![alt text](image-9.png)
+
+Resultado: 
+![alt text](Unity_olU8K25Kyc.gif)
+
+## Cámara rápida:
+### Tarea: Crear un script para activar la cámara lenta cuando el personaje entre en colisión con un elemento de la escena que elijas para activar esta propiedad.
+
+### Tarea: Crear un script para activar la cámara rápida cuando el personaje entre en colisión con un elemento de la escena que elijas para activar esta propiedad.
+
+Creamos dos cámaras una para la cámara lenta y otra para la cámara rápida.
+También creamos dos objetos que controla dichas cámaras, cuando el jugador pasa por un objeto activa la cámara lenta y otro activa la cámara rápida.
+
+Asignar a ambos objetos el siguiente script que controla la velocidad de las cámaras
+```
+using UnityEngine;
+using Unity.Cinemachine;
+
+public class SimpleTimeZone : MonoBehaviour
+{
+    public CinemachineCamera effectCam; // Cámara que se activa
+    public float timeScale = 1f;        // <1 lento, >1 rápido
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            effectCam.gameObject.SetActive(true);
+            Time.timeScale = timeScale;
+        }
+    }
+}
+
+```
+
+Resultado:
+
+![alt text](Unity_r64HIL7kWY.gif)
+
+## Transición entre cámaras:
