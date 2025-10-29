@@ -24,7 +24,7 @@ Usarémos Cinemachine para controlar cámara 2D Y 3D.
 ## 2. Agregar una cámara con Cinemachine
 Hay que instar el paquete de Cinemachine desde PackManager
 
-![alt text](image.png)
+![alt text](imgs/image.png)
 
 Crear GameObject Cinemachine, 2D Camera
 
